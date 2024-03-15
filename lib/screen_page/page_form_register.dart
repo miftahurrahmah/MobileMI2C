@@ -2,11 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:intl/intl.dart';
-import 'package:untitled/screen_page/page_bottom_navigation.dart';
-import 'package:untitled/screen_page/page_column.dart';
 import 'package:untitled/screen_page/page_navigation_bar.dart';
-import 'package:untitled/screen_page/page_passing_data.dart';
-
 
 class PageFormRegister extends StatefulWidget {
   const PageFormRegister({super.key});
@@ -16,25 +12,28 @@ class PageFormRegister extends StatefulWidget {
 }
 
 class _PageFormRegisterState extends State<PageFormRegister> {
-  //untuk mendapatkan value dari text field
+  //Untuk mendapatkan value dari text field
   TextEditingController txtUsername = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   TextEditingController txtFullName = TextEditingController();
   TextEditingController txtTglLahir = TextEditingController();
   TextEditingController txtEmail = TextEditingController();
 
-  String? valAgam, valJk;
+  String? valAgama, valJk;
+
   //validasi form
-  GlobalKey<FormState> keyForm= GlobalKey<FormState>();
-  //untuk datepicker
-  Future selectDate() async{
+  GlobalKey<FormState> keyForm = GlobalKey<FormState>();
+
+  //Untuk Datepicker
+  Future selectDate() async {
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1950),
       lastDate: DateTime(2100),
     );
-    if(pickedDate != null){
+
+    if (pickedDate != null) {
       setState(() {
         txtTglLahir.text = DateFormat('dd-MM-yyyy').format(pickedDate);
       });
@@ -43,10 +42,10 @@ class _PageFormRegisterState extends State<PageFormRegister> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('Form  Register'),
+        title: Text('Form Register'),
       ),
 
       body: Form(
@@ -61,25 +60,11 @@ class _PageFormRegisterState extends State<PageFormRegister> {
                 TextFormField(
                   //validasi kosong
                   validator: (val){
-                    return val!.isEmpty ? "tidak boleh kosong " : null;
-                  },
-                  controller: txtUsername,
-                  decoration: InputDecoration(
-                      hintText: 'Input Username',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)
-                      )
-                  ),
-                ),
-                SizedBox(height: 8,),
-                TextFormField(
-                  //validasi kosong
-                  validator: (val){
-                    return val!.isEmpty ? "tidak boleh kosong " : null;
+                    return val!.isEmpty ? "Tidak boleh kosong" : null;
                   },
                   controller: txtFullName,
                   decoration: InputDecoration(
-                      hintText: 'Input Full Name',
+                      hintText: 'Fullname',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)
                       )
@@ -89,11 +74,11 @@ class _PageFormRegisterState extends State<PageFormRegister> {
                 TextFormField(
                   //validasi kosong
                   validator: (val){
-                    return val!.isEmpty ? "tidak boleh kosong " : null;
+                    return val!.isEmpty ? "Tidak boleh kosong" : null;
                   },
-                  controller: txtEmail,
+                  controller: txtUsername,
                   decoration: InputDecoration(
-                      hintText: 'Input Email',
+                      hintText: 'Username',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)
                       )
@@ -101,13 +86,13 @@ class _PageFormRegisterState extends State<PageFormRegister> {
                 ),
                 SizedBox(height: 8,),
                 TextFormField(
+                  //validasi kosong
                   validator: (val){
-                    return val!.isEmpty ? "tidak boleh kosong " : null;
+                    return val!.isEmpty ? "Tidak boleh kosong" : null;
                   },
-                  controller: txtPassword,
-                  obscureText: true,//biar password nya gak keliatan
+                  controller: txtEmail,
                   decoration: InputDecoration(
-                      hintText: 'Input Password',
+                      hintText: 'Email',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)
                       )
@@ -118,20 +103,35 @@ class _PageFormRegisterState extends State<PageFormRegister> {
                   onTap: (){
                     selectDate();
                   },
+                  //validasi kosong
                   validator: (val){
-                    return val!.isEmpty ? "tidak boleh kosong " : null;
+                    return val!.isEmpty ? "Tidak boleh kosong" : null;
                   },
                   controller: txtTglLahir,
                   decoration: InputDecoration(
-                      hintText: 'Input Tanggal Lahir',
+                      hintText: 'Tanggal Lahir',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)
                       )
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 8,),
+                TextFormField(
+                  //validasi kosong
+                  validator: (val){
+                    return val!.isEmpty ? "Tidak boleh kosong" : null;
+                  },
+                  controller: txtPassword,
+                  obscureText: true, //biar password tidak kelihatan
+                  decoration: InputDecoration(
+                      hintText: 'Password',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10)
+                      )
+                  ),
+                ),
+                SizedBox(height: 8,),
                 Container(
-
                   alignment: Alignment.center,
                   height: 65,
                   decoration: BoxDecoration(
@@ -141,7 +141,7 @@ class _PageFormRegisterState extends State<PageFormRegister> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: DropdownButton(
-                    value: valAgam,
+                    value: valAgama,
                     underline: Container(),
                     isExpanded: true,
                     hint: const Padding(
@@ -152,8 +152,8 @@ class _PageFormRegisterState extends State<PageFormRegister> {
                       "Islam",
                       "Kristen",
                       "Protestan",
-                      "Budha"
-                    ].map((e){
+                      "Buddha"
+                    ].map((e) {
                       return DropdownMenuItem(
                         value: e,
                         child: Padding(
@@ -162,10 +162,10 @@ class _PageFormRegisterState extends State<PageFormRegister> {
                         ),
                       );
                     }).toList(),
-                    onChanged: (val){
+                    onChanged: (val) {
                       setState(() {
-                        valAgam = val;
-                        print('hasil agama: ${valAgam}');
+                        valAgama = val;
+                        print('hasil Agama :  ${valAgama}');
                       });
                     },
                   ),
@@ -185,10 +185,11 @@ class _PageFormRegisterState extends State<PageFormRegister> {
                         },
                         activeColor: Colors.green,
                         title: Text(
-                            'Laki-Laki'
+                            'Laki-laki'
                         ),
                       ),
                     ),
+
                     Flexible(
                       child: RadioListTile(
                         value: "Perempuan",
@@ -206,31 +207,56 @@ class _PageFormRegisterState extends State<PageFormRegister> {
                     ),
                   ],
                 ),
-
+                const SizedBox(
+                  height: 25,
+                ),
                 SizedBox(height: 15,),
                 MaterialButton(
+                  color: Colors.green,
+                  minWidth: 200,
+                  height: 45,
                   onPressed: () {
-                    if (keyForm.currentState!.validate()) {
-
-                      String username = txtUsername.text;
-                      String pwd = txtPassword.text;
-
-                      print('Hasil login: ${username} dan pwd = ${pwd}');
-                    } else {
-                      // If not valid, show error message
-                      showToast(
-                        'Data tidak boleh kosong',
-                        context: context,
-                        backgroundColor: Colors.red,
-                        textStyle: TextStyle(color: Colors.white),
-                      );
+                    if (keyForm.currentState?.validate() == true) {
+                      if (valJk != null && valAgama != null) {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text("Data Register"),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text("Fullname :${txtFullName.text}"),
+                                    Text("Username :${txtUsername.text}"),
+                                    Text("Email : ${txtEmail.text}"),
+                                    Text("Password :${txtPassword.text}"),
+                                    Text("Agama : $valAgama"),
+                                    Text("Jenis Kelamin : $valJk"),
+                                    Text("Tanggal Lahir :${txtTglLahir.text}")
+                                  ],
+                                ),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text("Dismiss"))
+                                ],
+                              );
+                            });
+                      } else {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text("Pilih agama dan jenis kelamin"),
+                          backgroundColor: Colors.green,
+                        ));
+                      }
                     }
                   },
-                  child: Text('SIMPAN'),
-                  color: Colors.green,
-                  textColor: Colors.white,
+                  child: const Text("SIMPAN"),
                 )
-
               ],
             ),
           ),
