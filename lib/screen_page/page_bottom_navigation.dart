@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:untitled/screen_page/page_bottom_navigation.dart';
 import 'package:untitled/screen_page/page_column.dart';
+import 'package:untitled/screen_page/page_detail_grid.dart';
 import 'package:untitled/screen_page/page_form_register.dart';
 import 'package:untitled/screen_page/page_navigation_bar.dart';
 import 'package:untitled/screen_page/page_passing_data.dart';
@@ -34,7 +35,7 @@ class _PageBottomNavigationBarState extends State<PageBottomNavigationBar>
         controller: tabController,
         children: const [
           PageFormRegister(),
-          PageColumn(),
+          CustomeGrid(),
           PageColumnRow()
         ],
       ),
