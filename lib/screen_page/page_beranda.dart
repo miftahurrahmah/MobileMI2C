@@ -116,7 +116,6 @@ class PageBeranda extends StatelessWidget {
                 color: Colors.green,
                 textColor: Colors.white,
               ),
-
             ],
           ),
         ) ,
