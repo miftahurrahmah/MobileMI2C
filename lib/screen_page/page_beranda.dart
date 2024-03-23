@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:untitled/screen_page/page_bottom_navigation.dart';
+import 'package:untitled/screen_page/page_list_berita.dart';
 import 'package:untitled/screen_page/page_list_users.dart';
 import 'package:untitled/screen_page/page_navigation_bar.dart';
 
@@ -127,6 +128,24 @@ class PageBeranda extends StatelessWidget {
                 ));
               },
                 child: Text('Page List User',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12
+                  ),
+                ),
+                color: Colors.green,
+                textColor: Colors.white,
+              ),
+
+              SizedBox(height: 8,),
+              MaterialButton(onPressed: (){
+
+                //code untuk pindah page
+                Navigator.push(context, MaterialPageRoute(builder: (context)
+                => PageListBerita()
+                ));
+              },
+                child: Text('Page List berita',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12
