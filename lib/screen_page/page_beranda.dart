@@ -5,6 +5,7 @@ import 'package:untitled/screen_page/page_bottom_navigation.dart';
 import 'package:untitled/screen_page/page_list_berita.dart';
 import 'package:untitled/screen_page/page_list_users.dart';
 import 'package:untitled/screen_page/page_navigation_bar.dart';
+import 'package:untitled/screen_page/page_register_api.dart';
 
 class PageBeranda extends StatelessWidget {
   const PageBeranda({super.key});
@@ -146,6 +147,24 @@ class PageBeranda extends StatelessWidget {
                 ));
               },
                 child: Text('Page List berita',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12
+                  ),
+                ),
+                color: Colors.green,
+                textColor: Colors.white,
+              ),
+
+              SizedBox(height: 8,),
+              MaterialButton(onPressed: (){
+
+                //code untuk pindah page
+                Navigator.push(context, MaterialPageRoute(builder: (context)
+                => PageRegisterApi()
+                ));
+              },
+                child: Text('Page Register',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12
