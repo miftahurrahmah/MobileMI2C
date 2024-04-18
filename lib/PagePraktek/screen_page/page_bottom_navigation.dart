@@ -1,13 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:untitled/screen_page/page_bottom_navigation.dart';
-import 'package:untitled/screen_page/page_column.dart';
-import 'package:untitled/screen_page/page_detail_grid.dart';
-import 'package:untitled/screen_page/page_form_register.dart';
-import 'package:untitled/screen_page/page_navigation_bar.dart';
-import 'package:untitled/screen_page/page_passing_data.dart';
-import 'package:untitled/screen_page/page_search_list.dart';
+import 'package:untitled/PagePraktek/screen_page/page_detail_grid.dart';
+import 'package:untitled/PagePraktek/screen_page/page_form_register.dart';
+import 'package:untitled/PagePraktek/screen_page/page_search_list.dart';
+
 
 class PageBottomNavigationBar extends StatefulWidget {
   const PageBottomNavigationBar({super.key});

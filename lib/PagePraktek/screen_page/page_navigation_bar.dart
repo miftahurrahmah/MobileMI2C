@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:untitled/screen_page/page_column.dart';
-import 'package:untitled/screen_page/page_passing_data.dart';
+import 'package:untitled/PagePraktek/screen_page/page_column.dart';
+import 'package:untitled/PagePraktek/screen_page/page_passing_data.dart';
 
 class PageNavigationBar extends StatelessWidget {
   const PageNavigationBar({super.key});

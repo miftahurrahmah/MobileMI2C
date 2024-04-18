@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/screen_latihan/navigation_MI.dart';
-import 'package:untitled/screen_page/page_beranda.dart';
-import 'package:untitled/screen_latihan/latihansatu2019.dart';
-import 'package:untitled/screen_page/page_navigation_bar.dart';
+import 'package:untitled/LatihanProjek/screen_page/page_login_projek.dart';
+import 'package:untitled/LatihanProjek/screen_page/page_splash_screen.dart';
+import 'package:untitled/PagePraktek/screen_page/page_column.dart';
+import 'package:untitled/PagePraktek/screen_page/page_list_users.dart';
+import 'package:untitled/PagePraktek/screen_page/page_passing_data.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const PageBeranda(),
+      home: const PageSplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

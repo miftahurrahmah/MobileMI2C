@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:untitled/screen_page/page_halaman.dart';
+import 'package:untitled/PagePraktek/screen_page/page_halaman.dart';
+
 
 class PagePassingData extends StatelessWidget {
   const PagePassingData({super.key});

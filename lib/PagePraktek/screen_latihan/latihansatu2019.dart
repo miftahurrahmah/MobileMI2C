@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:untitled/screen_latihan/navigation_MI.dart';
-import 'package:untitled/screen_latihan/navigation_TK.dart';
+
+
+import 'navigation_MI.dart';
+import 'navigation_TK.dart';
 
 class PageLatihan extends StatelessWidget {
   const PageLatihan({super.key});

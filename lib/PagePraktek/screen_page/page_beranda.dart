@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:untitled/screen_page/page_bottom_navigation.dart';
-import 'package:untitled/screen_page/page_list_berita.dart';
-import 'package:untitled/screen_page/page_list_users.dart';
-import 'package:untitled/screen_page/page_navigation_bar.dart';
-import 'package:untitled/screen_page/page_register_api.dart';
+import 'package:untitled/PagePraktek/screen_page/page_bottom_navigation.dart';
+import 'package:untitled/PagePraktek/screen_page/page_list_berita.dart';
+import 'package:untitled/PagePraktek/screen_page/page_list_users.dart';
+import 'package:untitled/PagePraktek/screen_page/page_navigation_bar.dart';
+import 'package:untitled/PagePraktek/screen_page/page_register_api.dart';
+
 
 class PageBeranda extends StatelessWidget {
   const PageBeranda({super.key});
@@ -62,46 +63,46 @@ class PageBeranda extends StatelessWidget {
                 color: Colors.green,
                 textColor: Colors.white,
               ),
-              SizedBox(height: 8,),
-              MaterialButton(onPressed: (){
-                showToast(
-                  'This is normal',
-                  context: context,
-                  axis: Axis.horizontal,
-                  alignment: Alignment.center,
-                  position: StyledToastPosition.bottom,
-                  toastHorizontalMargin: 20,
-                  fullWidth: true,
-                );
-              },
-                child: Text('Explore Here',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12
-                  ),
-                ),
-                color: Colors.green,
-                textColor: Colors.white,
-              ),
+              // SizedBox(height: 8,),
+              // MaterialButton(onPressed: (){
+              //   showToast(
+              //     'This is normal',
+              //     context: context,
+              //     axis: Axis.horizontal,
+              //     alignment: Alignment.center,
+              //     position: StyledToastPosition.bottom,
+              //     toastHorizontalMargin: 20,
+              //     fullWidth: true,
+              //   );
+              // },
+              //   child: Text('Explore Here',
+              //     style: TextStyle(
+              //         fontWeight: FontWeight.bold,
+              //         fontSize: 12
+              //     ),
+              //   ),
+              //   color: Colors.green,
+              //   textColor: Colors.white,
+              // ),
 
-              SizedBox(height: 8,),
-              MaterialButton(onPressed: (){
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content:  Text('ini adalah pesan snackbar'),
-                    backgroundColor: Colors.deepOrange,
-                  ),
-
-                );
-              },
-                child: Text('SnackBar',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12
-                  ),
-                ),
-                color: Colors.green,
-                textColor: Colors.white,
-              ),
+              // SizedBox(height: 8,),
+              // MaterialButton(onPressed: (){
+              //   ScaffoldMessenger.of(context).showSnackBar(
+              //     SnackBar(content:  Text('ini adalah pesan snackbar'),
+              //       backgroundColor: Colors.deepOrange,
+              //     ),
+              //
+              //   );
+              // },
+              //   child: Text('SnackBar',
+              //     style: TextStyle(
+              //         fontWeight: FontWeight.bold,
+              //         fontSize: 12
+              //     ),
+              //   ),
+              //   color: Colors.green,
+              //   textColor: Colors.white,
+              // ),
               SizedBox(height: 8,),
               MaterialButton(onPressed: (){
 
