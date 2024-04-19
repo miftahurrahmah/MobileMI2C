@@ -31,7 +31,7 @@ class _PageFormRegisterState extends State<PageFormRegister> {
         isLoading = true;
       });
 
-      http.Response response = await http.post(Uri.parse('http://10.126.46.149/edukasi_server/register.php'),
+      http.Response response = await http.post(Uri.parse('http://192.168.1.25/edukasi_server/register.php'),
           body: {
             "username": txtUsername.text,
             "password": txtPassword.text,

@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:untitled/LatihanProjek/model_projek/projek_login.dart';
 import 'package:untitled/LatihanProjek/screen_page/page_bottom_menu_projek.dart';
 import 'package:untitled/LatihanProjek/screen_page/page_register_projek.dart';
-import '../../utils/session_manager.dart';
+import '../../utils/session_manager_latihan.dart';
 
 class PageLoginApi extends StatefulWidget {
   const PageLoginApi({Key? key}) : super(key: key);
@@ -17,7 +17,6 @@ class _PageLoginApiState extends State<PageLoginApi> {
   TextEditingController txtPassword = TextEditingController();
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
   bool isLoading = false;
-  bool loginSuccess = false;
 
   Future<void> loginAccount() async {
     try {
@@ -26,7 +25,7 @@ class _PageLoginApiState extends State<PageLoginApi> {
       });
 
       http.Response response = await http.post(
-        Uri.parse('http://10.126.46.149/edukasi_server/login.php'),
+        Uri.parse('http://192.168.1.25/edukasi_server/login.php'),
         body: {
           "username": txtUsername.text,
           "password": txtPassword.text,
@@ -38,18 +37,36 @@ class _PageLoginApiState extends State<PageLoginApi> {
 
         if (data != null) {
           if (data.value == 1) {
-            session.saveSession(data.value ?? 0, data.id ?? "", data.username ?? "");
             setState(() {
-              loginSuccess = true;
+              isLoading = false;
             });
-            Navigator.pushReplacement(
+            session.saveSession(
+              data.value ?? 0,
+              data.id ?? "",
+              data.username ?? "",
+              data.nama ?? "",
+              data.email ?? "",
+              data.nohp ?? "",
+            );
+
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('${data.message}')),
+            );
+
+            Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => PageBottomNavigationBar()),
+              MaterialPageRoute(
+                builder: (context) => PageBottomNavigationBar(),
+              ),
+                  (route) => false,
             );
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(data.message ?? 'Username atau password salah'),
-            ));
+            setState(() {
+              isLoading = false;
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('${data.message ?? 'Username atau password salah'}')),
+            );
           }
         } else {
           throw Exception('Data kosong');
@@ -136,14 +153,6 @@ class _PageLoginApiState extends State<PageLoginApi> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Text(
-                    loginSuccess ? 'Selamat datang!' : '',
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 10),
                   TextButton(
                     onPressed: () {
                       Navigator.push(

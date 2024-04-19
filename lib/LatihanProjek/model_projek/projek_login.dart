@@ -13,6 +13,8 @@ class ModelLogin {
   String message;
   String username;
   String nama;
+  String email;
+  String nohp;
   String id;
 
   ModelLogin({
@@ -20,6 +22,8 @@ class ModelLogin {
     required this.message,
     required this.username,
     required this.nama,
+    required this.email,
+    required this.nohp,
     required this.id,
   });
 
@@ -28,6 +32,8 @@ class ModelLogin {
     message: json["message"],
     username: json["username"],
     nama: json["nama"],
+    email: json["email"],
+    nohp: json["nohp"],
     id: json["id"],
   );
 
@@ -36,6 +42,8 @@ class ModelLogin {
     "message": message,
     "username": username,
     "nama": nama,
+    "email": email,
+    "nohp": nohp,
     "id": id,
   };
 }
