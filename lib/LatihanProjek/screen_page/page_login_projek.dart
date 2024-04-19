@@ -26,7 +26,7 @@ class _PageLoginApiState extends State<PageLoginApi> {
       });
 
       http.Response response = await http.post(
-        Uri.parse('http://192.168.1.25/edukasi_server/login.php'),
+        Uri.parse('http://10.126.46.149/edukasi_server/login.php'),
         body: {
           "username": txtUsername.text,
           "password": txtPassword.text,

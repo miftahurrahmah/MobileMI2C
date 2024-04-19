@@ -17,19 +17,16 @@ class _PageBottomNavigationBarState extends State<PageBottomNavigationBar>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
   Color? containerColor;
+  late SessionManager sessionManager;
 
   @override
   void initState() {
     super.initState();
+    sessionManager = SessionManager();
+    sessionManager.getSession();
     tabController = TabController(length: 3, vsync: this);
     containerColor = Colors.transparent;
     tabController.addListener(_handleTabSelection);
-  }
-
-  @override
-  void dispose() {
-    tabController.dispose();
-    super.dispose();
   }
 
   void _handleTabSelection() {
@@ -39,18 +36,24 @@ class _PageBottomNavigationBarState extends State<PageBottomNavigationBar>
   }
 
   @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text('Aplikasi'),
         actions: [
-          TextButton(onPressed: (){}, child: Text('Hi ${session.userName}')),
+          TextButton(onPressed: (){}, child: Text('Hi ${sessionManager.userName}')),
           //logout
           IconButton(onPressed: (){
             //clear session
             setState(() {
-              session.clearSession();
+              sessionManager.clearSession();
               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)
               => PageLoginApi()
               ),
@@ -72,7 +75,7 @@ class _PageBottomNavigationBarState extends State<PageBottomNavigationBar>
             // content
             PageBerita(),
             PageKaryawan(),
-            PageUser()
+            PageProfileUser()
           ],
         ),
       ),
@@ -102,5 +105,3 @@ class _PageBottomNavigationBarState extends State<PageBottomNavigationBar>
     );
   }
 }
-
-

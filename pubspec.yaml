@@ -75,6 +75,7 @@ flutter:
         - gambar/jungle_crulse.jpg
         - gambar/korea_action.jpg
         - gambar/thesimpson.jpg
+        - gambar/splash.jpg
         - gambar/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

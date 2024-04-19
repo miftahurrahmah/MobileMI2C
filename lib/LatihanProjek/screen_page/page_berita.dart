@@ -23,7 +23,7 @@ class _PageBeritaState extends State<PageBerita> {
   Future<List<Datum>?> getBerita() async {
     try {
       http.Response response = await http.get(
-          Uri.parse("http://192.168.1.25/edukasi_server/getBerita.php"));
+          Uri.parse("http://10.126.46.149/edukasi_server/getBerita.php"));
       return modelBeritaFromJson(response.body).data;
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -71,7 +71,7 @@ class _PageBeritaState extends State<PageBerita> {
                   ),
                 ),
                 onChanged: (_) {
-                  setState(() {}); // Update UI when search text changes
+                  setState(() {});
                 },
               ),
             ),
@@ -124,7 +124,8 @@ class _PageBeritaState extends State<PageBerita> {
                                       BorderRadius.circular(10),
                                       child: Center(
                                         child: Image.network(
-                                          'http://192.168.1.25/edukasi_server/gambar_berita/${data
+                                          'http://'
+                                              '10.126.46.149/edukasi_server/gambar_berita/${data
                                               .gambar}',
                                           width: 250,
                                           height: 300,
@@ -200,7 +201,7 @@ class DetailBerita extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
-                'http://192.168.1.25/edukasi_server/gambar_berita/${data?.gambar}',
+                'http://10.126.46.149/edukasi_server/gambar_berita/${data?.gambar}',
                 height: 300,
                 fit: BoxFit.fill,
               ),
