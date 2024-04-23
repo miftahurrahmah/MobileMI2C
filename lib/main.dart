@@ -7,6 +7,8 @@ import 'package:untitled/LatihanProjek/screen_page/page_splash_screen.dart';
 import 'package:untitled/PagePraktek/screen_page/page_column.dart';
 import 'package:untitled/PagePraktek/screen_page/page_list_users.dart';
 import 'package:untitled/PagePraktek/screen_page/page_passing_data.dart';
+import 'package:untitled/SimulasiUTS/page/berita.dart';
+import 'package:untitled/SimulasiUTS/page/splash_screen.dart';
 
 
 void main() {

@@ -1,20 +1,19 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:untitled/LatihanProjek/model_projek/projek_login.dart';
-import 'package:untitled/LatihanProjek/screen_page/page_bottom_menu_projek.dart';
-import 'package:untitled/LatihanProjek/screen_page/page_register_projek.dart';
 import 'package:untitled/SimulasiUTS/page/berita.dart';
-import '../../utils/session_manager_latihan.dart';
+import 'package:untitled/SimulasiUTS/page/register.dart';
+import '../../utils/sessionManagerUTS.dart';
+import '../model/login_model.dart';
 
-
-class PageLoginApi extends StatefulWidget {
-  const PageLoginApi({Key? key}) : super(key: key);
+class PageLogin extends StatefulWidget {
+  const PageLogin({Key? key}) : super(key: key);
 
   @override
-  State<PageLoginApi> createState() => _PageLoginApiState();
+  State<PageLogin> createState() => _PageLoginState();
 }
 
-class _PageLoginApiState extends State<PageLoginApi> {
+class _PageLoginState extends State<PageLogin> {
   TextEditingController txtUsername = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
@@ -27,7 +26,7 @@ class _PageLoginApiState extends State<PageLoginApi> {
       });
 
       http.Response response = await http.post(
-        Uri.parse('http://192.168.1.2/edukasi_server1/login.php'),
+        Uri.parse('http://192.168.1.2/edukasi_server/login.php'),
         body: {
           "username": txtUsername.text,
           "password": txtPassword.text,
@@ -35,52 +34,52 @@ class _PageLoginApiState extends State<PageLoginApi> {
       );
 
       if (response.statusCode == 200) {
-        ModelLogin? data = modelLoginFromJson(response.body);
+        Map<String, dynamic> responseData = json.decode(response.body);
+        ModelLogin data = ModelLogin.fromJson(responseData);
 
-        if (data != null) {
-          if (data.value == 1) {
-            setState(() {
-              isLoading = false;
-            });
+        if (data.value == 1) {
+          setState(() {
+            isLoading = false;
             session.saveSession(
-              data.value ?? 0,
-              data.id ?? "",
+              data.value,
+              data.id,
               data.username ?? "",
-              data.nama ?? "",
               data.email ?? "",
-              data.nohp ?? "",
+              data.nama ?? "",
             );
 
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('${data.message}')),
+              SnackBar(content: Text('Status login: Berhasil')),
             );
-
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(
-                builder: (context) => PageBerita(),
-              ),
+              MaterialPageRoute(builder: (context) => PageBerita()),
                   (route) => false,
             );
-          } else {
-            setState(() {
-              isLoading = false;
-            });
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('${data.message ?? 'Username atau password salah'}')),
-            );
-          }
+          });
         } else {
-          throw Exception('Data kosong');
+          setState(() {
+            isLoading = false;
+            String errorMessage = data.message.isNotEmpty ? data.message : 'Gagal login';
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(errorMessage)),
+            );
+          });
         }
       } else {
-        throw Exception('Error ${response.statusCode}');
+        setState(() {
+          isLoading = false;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Gagal login. Mohon coba lagi.')),
+          );
+        });
       }
     } catch (e) {
       setState(() {
         isLoading = false;
+        String errorMessage = 'Terjadi kesalahan: $e';
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Username atau Password Anda Salah')),
+          SnackBar(content: Text(errorMessage)),
         );
       });
     }
@@ -113,9 +112,7 @@ class _PageLoginApiState extends State<PageLoginApi> {
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    validator: (val) {
-                      return val!.isEmpty ? "Tidak boleh kosong" : null;
-                    },
+                    validator: (val) => val!.isEmpty ? "Tidak boleh kosong" : null,
                     controller: txtUsername,
                     decoration: InputDecoration(
                       hintText: 'Username',
@@ -127,9 +124,7 @@ class _PageLoginApiState extends State<PageLoginApi> {
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    validator: (val) {
-                      return val!.isEmpty ? "Tidak boleh kosong" : null;
-                    },
+                    validator: (val) => val!.isEmpty ? "Tidak boleh kosong" : null,
                     controller: txtPassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -145,7 +140,7 @@ class _PageLoginApiState extends State<PageLoginApi> {
                       ? CircularProgressIndicator()
                       : ElevatedButton(
                     onPressed: () async {
-                      if (keyForm.currentState?.validate() == true) {
+                      if (keyForm.currentState!.validate()) {
                         await loginAccount();
                       }
                     },

@@ -33,6 +33,7 @@ class _PageProfileUserState extends State<PageProfileUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title: Text(
           'Profil',
           style: TextStyle(
@@ -293,7 +294,7 @@ class _PageEditProfileState extends State<PageEditProfile> {
       });
 
       http.Response response = await http.post(
-        Uri.parse('http://192.168.1.25/edukasi_server/updateUser.php'),
+        Uri.parse('http://10.126.106.118/edukasi_server/updateUser.php'),
         body: {
           "username": txtUsername.text,
           "email": txtEmail.text,

@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:untitled/LatihanProjek/screen_page/page_login_projek.dart';
-import '../model_projek/projek_register.dart';
+import 'package:untitled/SimulasiUTS/page/login.dart';
+import '../model/register_model.dart';
+
 
 class PageFormRegister extends StatefulWidget {
   const PageFormRegister({Key? key});
@@ -17,7 +18,6 @@ class _PageFormRegisterState extends State<PageFormRegister> {
   TextEditingController txtUsername = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   TextEditingController txtEmail = TextEditingController();
-  TextEditingController txtNohp = TextEditingController();
 
   //validasi form
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
@@ -31,13 +31,13 @@ class _PageFormRegisterState extends State<PageFormRegister> {
         isLoading = true;
       });
 
-      http.Response response = await http.post(Uri.parse('http://192.168.1.2/edukasi_server1/register.php'),
+      http.Response response = await http.post(Uri.parse('http://192.168.1.2/edukasi_server/register.php'),
           body: {
             "username": txtUsername.text,
             "password": txtPassword.text,
             "nama": txtNama.text,
             "email": txtEmail.text,
-            "nohp": txtNohp.text,
+
           }
       );
       ModelRegister data = modelRegisterFromJson(response.body);
@@ -49,7 +49,7 @@ class _PageFormRegisterState extends State<PageFormRegister> {
         );
         //pindah ke page login
         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)
-        => PageLoginApi()
+        => PageLogin()
         ), (route) => false);
       }else if(data.value == 2){
         //kondisi akun sudah ada
@@ -158,21 +158,7 @@ class _PageFormRegisterState extends State<PageFormRegister> {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
-                TextFormField(
-                  //validasi kosong
-                  validator: (val) {
-                    return val!.isEmpty ? "Tidak boleh kosong" : null;
-                  },
-                  controller: txtNohp,
-                  decoration: InputDecoration(
-                    hintText: 'No Hp',
-                    prefixIcon: Icon(Icons.phone),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
+
                 SizedBox(height: 20),
                 isLoading
                     ? CircularProgressIndicator()
@@ -192,7 +178,7 @@ class _PageFormRegisterState extends State<PageFormRegister> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => PageLoginApi()),
+                      MaterialPageRoute(builder: (context) => PageLogin()),
                     );
                   },
                   child: Text(
